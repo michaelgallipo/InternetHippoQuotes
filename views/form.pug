@@ -1,22 +1,35 @@
-form(action="." method="POST")
+extends layout
 
-  label(for="quote") Quote:
-  input(
-    type="text"
-    id="quoute"
-    name="quote"
-  )
-  label(for="author") Author:
-  input(
-    type="text"
-    id="author"
-    name="author"
-  )
-  label(for="source") Sourcer:
-  input(
-    type="text"
-    id="source"
-    name="source"
-  )
+block content
+  -data = data || {}
 
-  input(type="submit" value="Submit")
+  if errors
+    ul
+      for error in errors
+        li= error.msg
+
+  form(action="." method="POST")
+
+    label(for="quote") Quote:
+    input(
+      type="text"
+      id="quoute"
+      name="quote"
+      value="data.quote"
+    )
+    label(for="author") Author:
+    input(
+      type="text"
+      id="author"
+      name="author"
+      value="data.author"
+    )
+    label(for="source") Source:
+    input(
+      type="text"
+      id="source"
+      name="source"
+      data="data.source"
+    )
+
+    input(type="submit" value="Submit")
